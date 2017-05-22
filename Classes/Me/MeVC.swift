@@ -13,7 +13,7 @@ class MeVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.groupTableViewBackground
-        
+    
     }
     
     override init(style: UITableViewStyle) {
@@ -66,4 +66,9 @@ class MeVC: UITableViewController {
         return 2
     }
 
+    
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
 }

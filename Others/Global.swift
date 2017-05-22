@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Kingfisher
 //生产环境
 //public let HOST : String = "https://www.qianjidaojia.com/api/v1/Mobile/V1.asmx/"
 //开发环境

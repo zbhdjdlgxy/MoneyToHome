@@ -28,8 +28,15 @@ class TitleIconView: UIView {
             return ""
         }
         set{
+            if newValue.hasPrefix("http") {
+                let url = URL(string: newValue)
+                
+                self.icon.kf.setImage(with: url)
+            }else{
+                 self.icon.image = UIImage.init(named: newValue)
+            }
             
-            self.icon.image = UIImage.init(named: newValue)
+           
         }
     }
     

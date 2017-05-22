@@ -13,7 +13,10 @@ class MenuView: UIView {
     var menus :[(String,String)]{
         
         willSet{
-            
+            for subview in self.subviews{
+                
+                subview.removeFromSuperview()
+            }
             for index in 0..<newValue.count {
                 
                 let item = newValue[index]
@@ -22,8 +25,10 @@ class MenuView: UIView {
                 titleIconView.title = item.0
                 titleIconView.image = item.1
                 titleIconView.tag = index
+                
                 self.addSubview(titleIconView)
             }
+    
         }
     }
     
@@ -55,6 +60,7 @@ class MenuView: UIView {
         
         let itemW = self.frame.size.width / 4
         let itemH = self.frame.size.height / CGFloat(sectionNumber!)
+
         let subViewCount = self.subviews.count
         for index in 0..<subViewCount{
             

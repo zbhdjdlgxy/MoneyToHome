@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MeVC: UITableViewController {
+class MeVC: UITableViewController,MeMyOrderCellDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +41,12 @@ class MeVC: UITableViewController {
         if indexPath.section == 0 {
             
             cell?.menus = [("待支付","order_wait_pay"),("待收货","order_wait_take"),("已完成","order_finish"),("已取消","order_cancel")]
+            cell?.delegate = self
             cell?.borderLine = false
         }else if indexPath.section == 1 {
             
             cell?.menus = [("我的收藏","me_collect"),("充值有礼","me_recharge"),("个人信息","me_personal_msg"),("收货地址","me_addr"),("消息中心","me_msg_center"),("商品评论","me_comment"),("帮组反馈","me_feedback"),("联系客服","me_contact")]
+            cell?.delegate = self
             cell?.borderLine = true
         }
         
@@ -71,4 +73,9 @@ class MeVC: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
+    //MARK:  MeMyOrderCellDelegate
+    func meMyOrderCellDidItemSelected(cell : MeMyOrderCell,selectItemIndex : Int){
+        
+        ALERT(title: "\(selectItemIndex)", message: "选中了", controller: self)
+    }
 }

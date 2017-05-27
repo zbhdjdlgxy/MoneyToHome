@@ -8,9 +8,16 @@
 
 import UIKit
 
-class HomeBtnMenuCell: UITableViewCell {
+protocol HomeBtnMenuCellDelegate {
+    
+    func homeBtnMenuCellDidItemSelected(cell : HomeBtnMenuCell,selectItemIndex : Int)
+}
+
+class HomeBtnMenuCell: UITableViewCell,MenuViewDelegate {
 
     var menu : MenuView?
+    
+    var delegate : HomeBtnMenuCellDelegate?
     
     var DataList : Array<HomeBtnItem>{
         
@@ -31,6 +38,7 @@ class HomeBtnMenuCell: UITableViewCell {
         DataList = [HomeBtnItem]()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.menu = MenuView.init(frame: .zero)
+        self.menu?.delegate = self
         self.addSubview(self.menu!)
     }
     
@@ -45,4 +53,9 @@ class HomeBtnMenuCell: UITableViewCell {
         
     }
 
+    //MARK:  MenuViewDelegate
+    func menuViewDidItemSelected(menu : MenuView,selectItemIndex : Int){
+        
+        self.delegate?.homeBtnMenuCellDidItemSelected(cell: self, selectItemIndex: selectItemIndex)
+    }
 }

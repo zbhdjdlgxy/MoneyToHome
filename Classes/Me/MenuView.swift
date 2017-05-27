@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol MenuViewDelegate {
+    
+    func menuViewDidItemSelected(menu : MenuView,selectItemIndex : Int)
+}
+
 class MenuView: UIView {
 
+    
+    var delegate : MenuViewDelegate?
+    
     var menus :[(String,String)]{
         
         willSet{
@@ -51,6 +59,7 @@ class MenuView: UIView {
         
         let itemCount = self.menus.count
         var sectionNumber: Int?
+        
         if itemCount % defaultRowOfNumber != 0 {
             
             sectionNumber = itemCount / defaultRowOfNumber + 1
@@ -68,6 +77,8 @@ class MenuView: UIView {
             let viewX = CGFloat(index % defaultRowOfNumber) * itemW
             let viewY = CGFloat(index / defaultRowOfNumber) * itemH
             titleIconView.frame = CGRect(x: viewX, y: viewY, width: itemW, height: itemH)
+            let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(itemSelected))
+            titleIconView.addGestureRecognizer(tapGesture)
         }
         
     }
@@ -84,4 +95,8 @@ class MenuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func itemSelected(gesture : UITapGestureRecognizer) {
+
+        self.delegate?.menuViewDidItemSelected(menu: self, selectItemIndex: (gesture.view?.tag)!)
+    }
 }

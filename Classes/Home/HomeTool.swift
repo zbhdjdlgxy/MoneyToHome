@@ -77,12 +77,12 @@ class HomeTool: NSObject {
      *  @param failure 请求失败后的回调
      */
     class func getHomeNoticeListWithParam(_ param : GetHomeNoticeListParam,success : @escaping (_ result : GetHomeNoticeListResult) -> Void,failure : @escaping (_ error : NSError) -> Void){
-        MBProgressHUD.showMessage("加载中...")
+        //MBProgressHUD.showMessage("加载中...")
         let dict = param.toDict()
         
         ZBHttpTool.getWithUrl(KGetHomeNoticeList, params: dict, success: { (id) in
             
-            MBProgressHUD.hide()
+            //MBProgressHUD.hide()
             let dic : NSDictionary = id as! NSDictionary
             success(GetHomeNoticeListResult.parse(dict: dic))
         }) { (id) in

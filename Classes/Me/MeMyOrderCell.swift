@@ -8,9 +8,16 @@
 
 import UIKit
 
-class MeMyOrderCell: UITableViewCell {
+protocol MeMyOrderCellDelegate {
+    
+    func meMyOrderCellDidItemSelected(cell : MeMyOrderCell,selectItemIndex : Int)
+}
+
+class MeMyOrderCell: UITableViewCell, MenuViewDelegate{
 
     var orderMenuView :MenuView?
+    
+    var delegate : MeMyOrderCellDelegate?
     
     var menus :[(String,String)]{
         
@@ -38,6 +45,7 @@ class MeMyOrderCell: UITableViewCell {
         self.borderLine = false
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.orderMenuView = MenuView.init(frame: .zero)
+        self.orderMenuView?.delegate = self
         self.addSubview(orderMenuView!)
         
     }
@@ -47,4 +55,9 @@ class MeMyOrderCell: UITableViewCell {
         orderMenuView?.frame = self.bounds
     }
 
+    //MARK:  MenuViewDelegate
+    func menuViewDidItemSelected(menu : MenuView,selectItemIndex : Int){
+        
+        self.delegate?.meMyOrderCellDidItemSelected(cell: self, selectItemIndex: selectItemIndex)
+    }
 }

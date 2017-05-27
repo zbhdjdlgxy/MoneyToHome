@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UITableViewController {
+class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     
     
     static let btnIdentifer = "HomeBtnMenuCell"
@@ -32,6 +32,7 @@ class HomeVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.groupTableViewBackground
+        self.tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(requestHomeMsg))
         self.tableView.register(HomeBtnMenuCell.self, forCellReuseIdentifier: HomeVC.btnIdentifer)
         self.tableView.register(UINib.init(nibName: "KillTimeCell", bundle: nil), forCellReuseIdentifier: HomeVC.killTimeIdentifer)
         self.tableView.register(HomeTemplateCell.self, forCellReuseIdentifier: HomeVC.templateIdentifier)
@@ -44,7 +45,7 @@ class HomeVC: UITableViewController {
     //首页请求
     func requestHomeMsg(){
         
-        //self.requestForGetHomeNoticeList()
+        self.requestForGetHomeNoticeList()
         //self.requestForGetHomeBannerList()
         self.requestForGetHomeButtonList()
         self.requestForGetSpikeGoodsList()
@@ -113,7 +114,7 @@ class HomeVC: UITableViewController {
         HomeTool.getHomeTemplateWithParam(param, success: { (result ) in
             
             if result.Status == 0{
-                
+                self.tableView.mj_header.endRefreshing()
                self.templateS = result.TemplateContent
                 self.tableView.reloadData()
             }
@@ -135,7 +136,7 @@ class HomeVC: UITableViewController {
             
             if result.Status == 0{
                 
-                if result.DataList.count == 0 {
+                if result.DataList.count != 0 {
                     
                     
                 }else{
@@ -206,6 +207,7 @@ class HomeVC: UITableViewController {
         switch indexPath.section {
         case 0:
             let btnsCell : HomeBtnMenuCell = tableView.dequeueReusableCell(withIdentifier: HomeVC.btnIdentifer) as! HomeBtnMenuCell
+            btnsCell.delegate = self
             btnsCell.DataList = btnMenu
             return btnsCell
         case 1:
@@ -245,5 +247,11 @@ class HomeVC: UITableViewController {
             
         }
         return 0
+    }
+    
+    //MARK: HomeBtnMenuCellDelegate
+    func homeBtnMenuCellDidItemSelected(cell : HomeBtnMenuCell,selectItemIndex : Int){
+        
+        ALERT(title: "\(selectItemIndex)", message: "选中了", controller: self)
     }
 }

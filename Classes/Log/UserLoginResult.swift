@@ -10,8 +10,8 @@ import UIKit
 
 class UserLoginResult: Reflect {
 
-    var Message :NSString = ""
-    var Status :NSNumber = 0.0
+    var Message :NSString?
+    var Status :NSNumber?
     /**会员Id*/
     var UserId :NSNumber = 0.0
     /**社区站点Id*/

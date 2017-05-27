@@ -14,8 +14,8 @@ class DiscoveryTool: NSObject {
     static let KGetCategoryGoodsList : String = HOST + "GetCategoryGoodsList"
     
     /**
-     * 登录
      *
+     *  获取分类下的商品列表
      *  @param param   请求参数
      *  @param success 请求成功后的回调
      *  @param failure 请求失败后的回调

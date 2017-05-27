@@ -69,7 +69,7 @@ class DiscoveryVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
         let param : GetCategoryGoodsListParam = GetCategoryGoodsListParam()
         param.StationId = "\(userResult.StationId)"
         param.PageIndex = index
-        
+
         DiscoveryTool.getCategoryGoodsListWithParam(param, success: { (result ) in
             
             if result.Status == 0{

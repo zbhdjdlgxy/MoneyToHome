@@ -10,10 +10,11 @@ import UIKit
 
 class GetCategoryGoodsListParam: Reflect {
 
-    var key : String = SYSTEM_KEY
+    
+    let key : String = SYSTEM_KEY
     var StationId : String?
     var CategoryId : String = "0"
-    var KeyWord : String = "0"
+    var KeyWord : String = ""
     var PageSize : String = "20"
     var PageIndex : Int?
     var SortFlag : String = "0"

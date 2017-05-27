@@ -39,7 +39,7 @@ class GoodsCategoryItem: Reflect {
 
 class GetGoodsCategoryListResult: Reflect {
 
-    
-    var Status :NSNumber = 0.0
+    var Message :NSString?
+    var Status :NSNumber?
     var DataList : Array<GoodsCategoryItem> = []
 }

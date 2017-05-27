@@ -11,8 +11,8 @@ import UIKit
 class GetGoodsCategoryListParam: Reflect {
 
     
-    var key : String = SYSTEM_KEY
-    var StationId : String = "1"
+    let key : String = SYSTEM_KEY
+    let StationId : NSNumber = 1
     var CategoryFatherId : String = "0"
 
 }

@@ -58,7 +58,7 @@ class MainTabbarController: UITabBarController,ZBTabBarDelegate{
     func setupAllChildViewControllers(){
         
         // 1.首页
-        let homeVC : HomeVC = HomeVC()
+        let homeVC : HomeVC = HomeVC.init(style: .grouped)
         self.setupChildViewController(homeVC, title: "首页", imageName: "tabbar_home", selectedImageName: "tabbar_home_selected")
         
         // 2.品类

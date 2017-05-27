@@ -14,8 +14,8 @@ class CategoryTool: NSObject {
     static let KGetGoodsCategoryList : String = HOST + "GetGoodsCategoryList"
     
     /**
-     * 登录
      *
+     *  获取商品分类列表
      *  @param param   请求参数
      *  @param success 请求成功后的回调
      *  @param failure 请求失败后的回调

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscoveryVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class DiscoveryVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,DiscoveryViewCellDelegate {
     
     static let cellIdentifier = "DiscoveryViewCell"
     static let headerIdentifier = "discoveryHeader"
@@ -102,6 +102,7 @@ class DiscoveryVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
         
         let itemCell :  DiscoveryViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoveryVC.cellIdentifier, for: indexPath) as! DiscoveryViewCell
         itemCell.goodsItem = self.goodsArr[indexPath.row]
+        itemCell.delegate = self
         return itemCell
     }
     
@@ -116,5 +117,11 @@ class DiscoveryVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
             
         }
         return headerView!
+    }
+    
+    //MARK: DiscoveryViewCellDelegate
+    func discoveryViewCellDidCarClicked(cell : DiscoveryViewCell){
+        
+        ALERT(title:"加入购物车成功" , message: cell.goodsItem.GoodsName!, controller: self)
     }
 }

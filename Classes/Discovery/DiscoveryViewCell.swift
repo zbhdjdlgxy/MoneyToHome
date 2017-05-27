@@ -7,8 +7,16 @@
 //
 
 import UIKit
+
+protocol DiscoveryViewCellDelegate {
+    
+    func discoveryViewCellDidCarClicked(cell : DiscoveryViewCell)
+}
+
 class DiscoveryViewCell: UICollectionViewCell {
     
+    
+    var delegate : DiscoveryViewCellDelegate?
     //商品图片
     var goodsImg : UIImageView = {
         
@@ -46,6 +54,7 @@ class DiscoveryViewCell: UICollectionViewCell {
         
         let button : UIButton = UIButton.init(type: UIButtonType.custom)
         button.setBackgroundImage(UIImage.init(named: "car_normal"), for: UIControlState.normal)
+        
         return button
     }()
     
@@ -78,6 +87,7 @@ class DiscoveryViewCell: UICollectionViewCell {
         self.addSubview(self.originalPrice)
         self.addSubview(self.discountPrice)
         self.addSubview(self.shoppingCarBtn)
+        self.shoppingCarBtn.addTarget(self, action: #selector(shopCarClicked), for: UIControlEvents.touchUpInside)
         
     }
     
@@ -127,5 +137,9 @@ class DiscoveryViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func shopCarClicked()  {
+        self.delegate?.discoveryViewCellDidCarClicked(cell: self)
     }
 }

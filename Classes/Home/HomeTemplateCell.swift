@@ -14,7 +14,6 @@ class HomeTemplateCell: UITableViewCell {
         
         willSet{
             
-            
             switch newValue.PicType!.intValue {
             case 1:
                 let picItem : PicItem = newValue.PicArray.last!

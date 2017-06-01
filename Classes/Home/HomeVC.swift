@@ -58,9 +58,8 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     //请求首页轮播图列表
     func requestForGetHomeBannerList(){
         
-        let userResult : UserLoginResult = NSKeyedUnarchiver.unarchiveObject(withFile: USER_FILE_PATH) as! UserLoginResult
         let param : GetHomeBannerListParam = GetHomeBannerListParam()
-        param.StationId = "\(userResult.StationId)"
+        param.StationId = "3"
         
         HomeTool.getHomeBannerListWithParam(param, success: { (result ) in
             
@@ -86,9 +85,8 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     //获取首页上部功能按钮图标和文本10个
     func requestForGetHomeButtonList(){
         
-        let userResult : UserLoginResult = NSKeyedUnarchiver.unarchiveObject(withFile: USER_FILE_PATH) as! UserLoginResult
         let param : GetHomeButtonListParam = GetHomeButtonListParam()
-        param.StationId = "\(userResult.StationId)"
+        param.StationId = "3"
         HomeTool.getHomeButtonListWithParam(param, success: { (result ) in
             
             if result.Status == 0{
@@ -112,9 +110,8 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     //请求首页模版
     func requestForGetHomeTemplate(){
         
-        let userResult : UserLoginResult = NSKeyedUnarchiver.unarchiveObject(withFile: USER_FILE_PATH) as! UserLoginResult
         let param : GetHomeTemplateParam = GetHomeTemplateParam()
-        param.StationId = "\(userResult.StationId)"
+        param.StationId = "3"
         
         HomeTool.getHomeTemplateWithParam(param, success: { (result ) in
             
@@ -133,9 +130,8 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     //获取滚动公告列表
     func requestForGetHomeNoticeList(){
         
-        let userResult : UserLoginResult = NSKeyedUnarchiver.unarchiveObject(withFile: USER_FILE_PATH) as! UserLoginResult
         let param : GetHomeNoticeListParam = GetHomeNoticeListParam()
-        param.StationId = "\(userResult.StationId)"
+        param.StationId = "3"
         
         HomeTool.getHomeNoticeListWithParam(param, success: { (result ) in
             
@@ -159,9 +155,8 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     //请求分类下的商品列表
     func requestForGetSpikeGoodsList(){
         
-        let userResult : UserLoginResult = NSKeyedUnarchiver.unarchiveObject(withFile: USER_FILE_PATH) as! UserLoginResult
         let param : GetSpikeGoodsListParam = GetSpikeGoodsListParam()
-        param.StationId = "\(userResult.StationId)"
+        param.StationId = "3"
         
         HomeTool.getSpikeGoodsListWithParam(param, success: { (result ) in
             

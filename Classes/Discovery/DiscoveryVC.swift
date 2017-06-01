@@ -65,9 +65,8 @@ class DiscoveryVC: UIViewController,UICollectionViewDelegate,UICollectionViewDat
     //请求商品列表
     func requestForCategoryGoodsList(){
         
-        let userResult : UserLoginResult = NSKeyedUnarchiver.unarchiveObject(withFile: USER_FILE_PATH) as! UserLoginResult
         let param : GetCategoryGoodsListParam = GetCategoryGoodsListParam()
-        param.StationId = "\(userResult.StationId)"
+        param.StationId = "3"
         param.PageIndex = index
 
         DiscoveryTool.getCategoryGoodsListWithParam(param, success: { (result ) in

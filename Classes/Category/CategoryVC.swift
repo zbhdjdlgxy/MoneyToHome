@@ -23,6 +23,7 @@ class CategoryVC: UIViewController, UITableViewDataSource,UITableViewDelegate,UI
     var categoryTable : UITableView = {
         
         let tableView : UITableView = UITableView.init(frame: CGRect(x: 0, y: 0, width: 120, height: SCREEN_HEIGHT))
+        tableView.tableFooterView = UIView.init(frame: .zero)
         tableView.backgroundColor = UIColor.groupTableViewBackground
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: leftCellidentifer)
         return tableView

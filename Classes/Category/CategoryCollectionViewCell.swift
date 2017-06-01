@@ -31,7 +31,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             
             let url = URL(string: newValue.CategoryImg!)
             
-            self.icon.kf.setImage(with: url)
+            self.icon.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
             self.title.text = newValue.CategoryName
         }
     }

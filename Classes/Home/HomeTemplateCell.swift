@@ -20,7 +20,7 @@ class HomeTemplateCell: UITableViewCell {
                 let picItem : PicItem = newValue.PicArray.last!
                 let image : UIImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: self.frame.size.height))
                 let url = URL(string: picItem.Path!)
-                image.kf.setImage(with: url)
+                image.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
                 self.addSubview(image)
             case 2:
                 
@@ -31,7 +31,7 @@ class HomeTemplateCell: UITableViewCell {
                     let picItem : PicItem = newValue.PicArray[index]
                     let image : UIImageView = UIImageView.init(frame: CGRect(x: imageW * CGFloat(index), y: 0, width: imageW, height:imageH))
                     let url = URL(string: picItem.Path!)
-                    image.kf.setImage(with: url)
+                    image.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
                     self.addSubview(image)
                 }
             case 3:
@@ -42,7 +42,7 @@ class HomeTemplateCell: UITableViewCell {
                     let picItem : PicItem = newValue.PicArray[index]
                     let image : UIImageView = UIImageView.init(frame: CGRect(x: imageW * CGFloat(index), y: 0, width: imageW, height:imageH))
                     let url = URL(string: picItem.Path!)
-                    image.kf.setImage(with: url)
+                    image.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
                     self.addSubview(image)
                 }
             case 4:

@@ -64,7 +64,7 @@ class DiscoveryViewCell: UICollectionViewCell {
             
             let url = URL(string: newValue.GoodsThumbImg1!)
         
-            self.goodsImg.kf.setImage(with: url)
+            self.goodsImg.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
             self.goosName.text = newValue.GoodsName
             self.originalPrice.text = String(format: "¥%0.2f",(newValue.AttributePriceSCJ?.floatValue)!)
             self.discountPrice.text = String(format: "¥%0.2f",(newValue.AttributePriceCGJ?.floatValue)!)

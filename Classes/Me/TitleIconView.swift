@@ -30,8 +30,7 @@ class TitleIconView: UIView {
         set{
             if newValue.hasPrefix("http") {
                 let url = URL(string: newValue)
-                
-                self.icon.kf.setImage(with: url)
+                self.icon.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
             }else{
                  self.icon.image = UIImage.init(named: newValue)
             }

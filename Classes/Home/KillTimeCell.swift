@@ -39,8 +39,7 @@ class KillTimeCell: UITableViewCell {
                 let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(selectItem(image:)))
                 image.addGestureRecognizer(tapGesture)
                 image.tag = index
-                image.kf.setImage(with: url)
-                
+                image.kf.setImage(with: url, placeholder: UIImage.init(named: PLACEHOLDER_PHOTO), options: nil, progressBlock: nil, completionHandler: nil)
                 let title : UILabel = UILabel.init(frame: CGRect(x: CGFloat(index) * itemW, y: imageH, width: itemW, height: CGFloat(titleH)))
                 title.font = UIFont.systemFont(ofSize: 13.0)
                 

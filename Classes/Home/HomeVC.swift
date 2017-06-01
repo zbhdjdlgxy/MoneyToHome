@@ -14,10 +14,12 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     static let btnIdentifer = "HomeBtnMenuCell"
     static let killTimeIdentifer = "KillTimeCell"
     static let templateIdentifier = "HomeTemplateCell"
+    static let bannerIdentifier = "BannerViewCell"
     
      var btnMenu = [HomeBtnItem]()
     var goodsMenu = [GoodsItem]()
     var templateS = [TemplateContentItem]()
+    var banners = [BannerItem]()
     override init(style: UITableViewStyle){
         
         super.init(style: style)
@@ -36,6 +38,7 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
         self.tableView.register(HomeBtnMenuCell.self, forCellReuseIdentifier: HomeVC.btnIdentifer)
         self.tableView.register(UINib.init(nibName: "KillTimeCell", bundle: nil), forCellReuseIdentifier: HomeVC.killTimeIdentifer)
         self.tableView.register(HomeTemplateCell.self, forCellReuseIdentifier: HomeVC.templateIdentifier)
+        self.tableView.register(BannerViewCell.self, forCellReuseIdentifier: HomeVC.bannerIdentifier)
         self.requestHomeMsg()
     
     }
@@ -46,7 +49,7 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     func requestHomeMsg(){
         
         self.requestForGetHomeNoticeList()
-        //self.requestForGetHomeBannerList()
+        self.requestForGetHomeBannerList()
         self.requestForGetHomeButtonList()
         self.requestForGetSpikeGoodsList()
         self.requestForGetHomeTemplate()
@@ -63,9 +66,11 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
             
             if result.Status == 0{
                 
-                if result.DataList.count == 0 {
+                if result.DataList.count != 0 {
                     
-                    
+                    self.banners = result.DataList
+                    self.tableView.mj_header.endRefreshing()
+                    self.tableView.reloadData()
                 }else{
                    
                     
@@ -74,7 +79,7 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
             
         }) { (error) in
             
-            
+            print("error = \(error.localizedDescription)")
         }
     }
     
@@ -189,6 +194,8 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
         case 1:
             return 1
         case 2:
+            return 1
+        case 3:
             return templateS.count
         default:
             return 1
@@ -198,7 +205,7 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
     
     public override func numberOfSections(in tableView: UITableView) -> Int{
         
-        return 3
+        return 4
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -206,15 +213,19 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
         
         switch indexPath.section {
         case 0:
+            let bannerCell : BannerViewCell = tableView.dequeueReusableCell(withIdentifier: HomeVC.bannerIdentifier) as! BannerViewCell
+            bannerCell.DataList = banners
+            return bannerCell
+        case 1:
             let btnsCell : HomeBtnMenuCell = tableView.dequeueReusableCell(withIdentifier: HomeVC.btnIdentifer) as! HomeBtnMenuCell
             btnsCell.delegate = self
             btnsCell.DataList = btnMenu
             return btnsCell
-        case 1:
+        case 2:
             let killCell : KillTimeCell = tableView.dequeueReusableCell(withIdentifier: HomeVC.killTimeIdentifer) as! KillTimeCell
             killCell.DataList = self.goodsMenu
             return killCell
-        case 2:
+        case 3:
             let templateCell : HomeTemplateCell = tableView.dequeueReusableCell(withIdentifier: HomeVC.templateIdentifier) as! HomeTemplateCell
             templateCell.item = self.templateS[indexPath.row]
             return templateCell
@@ -236,11 +247,14 @@ class HomeVC: UITableViewController,HomeBtnMenuCellDelegate {
         switch indexPath.section {
         case 0:
             
-            return 180
+            return SCREEN_WIDTH * 0.44
         case 1:
             
-            return 140
+            return 180
         case 2:
+            
+            return 140
+        case 3:
             
             return SCREEN_WIDTH * 0.44
         default: break

@@ -37,9 +37,10 @@ class HomeTool: NSObject {
             
             MBProgressHUD.hide()
             let error : NSError = id as! NSError
+            print("error = \(error.localizedDescription)")
             failure(id as! NSError)
             
-            print("error = \(error.localizedDescription)")
+            
         }
     }
     

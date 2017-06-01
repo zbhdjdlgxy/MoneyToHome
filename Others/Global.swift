@@ -20,6 +20,9 @@ public let SYSTEM_KEY : String = "admin"
 
 public let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 public let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
+
+
+public let PLACEHOLDER_PHOTO = "placeholder_photo"
 /**
  RGB转换
  */
